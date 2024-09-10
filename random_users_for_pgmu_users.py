@@ -83,7 +83,7 @@ def get_header():
     with open(infile, encoding='utf-8') as infile, open(outfile, 'a', encoding='utf-8') as outfile:
         csv_reader = csv.reader(infile, delimiter=';')
         headers = next(csv_reader)
-        new_headers = str(f'{headers[12],headers[13],headers[14],headers[15],headers[16],headers[11]}').replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
+        new_headers = str(f'{headers[12],headers[13],headers[14],headers[15],headers[16],headers[11]}'+";").replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
         print(new_headers)
         outfile.write(f'{new_headers}') # Записываем заголовки в файл
 
@@ -93,7 +93,7 @@ def get_row():
     with open(infile, encoding='utf-8') as infile, open(outfile, 'a', encoding='utf-8') as outfile:
             reader = csv.DictReader(infile, delimiter=";")
             for row in reader:
-                new_reader = str((row['surname_parent'],row['firstname_parent'],row['patronymic_parent'],row['dbirth_parrent'],row['email'])).replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
+                new_reader = str((row['surname_parent'],row['firstname_parent'],row['patronymic_parent'],row['dbirth_parrent'],row['email']+";")).replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
                 print(new_reader)
                 outfile.write(f'{new_reader}\n') # Записываем строки без заголовка в файл
 
@@ -111,9 +111,9 @@ def faker_create():
     
 
 def main():
-    # person_count = int(input('Введите количество личностей для генерации >>> '))
-    # for i in range(person_count):
-    #     faker_create()
+    person_count = int(input('Введите количество личностей для генерации >>> '))
+    for i in range(person_count):
+        faker_create()
     get_header()
     get_row()
 
