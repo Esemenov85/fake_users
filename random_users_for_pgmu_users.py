@@ -79,21 +79,21 @@ fake = Faker("ru_RU")
     
 def get_header():
     infile = 'C:/Users/Evgeniy_S/Documents/person_faker_kindergarten.csv'
-    outfile = 'C:/Users/Evgeniy_S/Documents/person_faker_users.csv'
+    outfile = 'C:/Users/Evgeniy_S/Documents/person_faker_users_1.csv'
     with open(infile, encoding='utf-8') as infile, open(outfile, 'a', encoding='utf-8') as outfile:
         csv_reader = csv.reader(infile, delimiter=';')
         headers = next(csv_reader)
-        new_headers = str(f'{headers[12],headers[13],headers[14],headers[15],headers[16],headers[11]}'+";").replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
+        new_headers = str(f'{headers[12],headers[13],headers[14],headers[15],headers[16],headers[11],headers[9]}'+";").replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
         print(new_headers)
-        outfile.write(f'{new_headers}') # Записываем заголовки в файл
+        outfile.write(f'{new_headers}\n') # Записываем заголовки в файл
 
 def get_row():
     infile = 'C:/Users/Evgeniy_S/Documents/person_faker_kindergarten.csv'
-    outfile = 'C:/Users/Evgeniy_S/Documents/person_faker_users.csv'
+    outfile = 'C:/Users/Evgeniy_S/Documents/person_faker_users_1.csv'
     with open(infile, encoding='utf-8') as infile, open(outfile, 'a', encoding='utf-8') as outfile:
             reader = csv.DictReader(infile, delimiter=";")
             for row in reader:
-                new_reader = str((row['surname_parent'],row['firstname_parent'],row['patronymic_parent'],row['dbirth_parrent'],row['email']+";")).replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
+                new_reader = str((row['surname_parent'],row['firstname_parent'],row['patronymic_parent'],row['dbirth_parrent'],row['email'],row['customer_id']+";")).replace(",",";").replace("'","").replace("(","").replace(")","").replace(" ","")
                 print(new_reader)
                 outfile.write(f'{new_reader}\n') # Записываем строки без заголовка в файл
 
@@ -105,8 +105,8 @@ def faker_create():
     driver_license_number = fake.plate_number_special()
     users_documents = (f"{sex},{is_has_app},{driver_license_seria},{driver_license_number}").replace(",",";")
     print(users_documents)
-    # with open('C:/Users/Evgeniy_S/Documents/person_faker_users.csv', 'a', encoding='utf-8') as file:
-    #         file.write(f'{users_documents}\n')
+    with open('C:/Users/Evgeniy_S/Documents/person_faker_users_2.csv', 'a', encoding='utf-8') as file:
+            file.write(f'{users_documents}\n')
     return users_documents
     
 
